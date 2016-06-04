@@ -10,6 +10,8 @@ Examples
     - Output: https://github.com/thombashi/pathvalidate/blob/master/README.rst
 - https://github.com/thombashi/pytablewriter/blob/master/docs/make_readme.py
     - Output: https://github.com/thombashi/pytablewriter/blob/master/README.rst
+- https://github.com/thombashi/SimpleSQLite/blob/master/docs/make_readme.py
+    - Output: https://github.com/thombashi/SimpleSQLite/blob/master/README.rst
 
 
 Installation
