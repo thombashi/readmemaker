@@ -4,6 +4,9 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
+from __future__ import unicode_literals
+
+import io
 import os
 import re
 
@@ -36,18 +39,21 @@ class ReadmeMaker(object):
     def examples_root_dir_path(self):
         return self.doc_page_root_dir_path.joinpath(self.examples_dir_name)
 
-    def __init__(self, project_name, output_dir):
+    def __init__(self, project_name, output_dir, encoding="utf8"):
         if not os.path.isdir(output_dir):
             raise IOError("directory not found: " + output_dir)
 
-        self.doc_root_dir_path = u"."
-        self.pages_dir_name = u"pages"
-        self.introduction_dir_name = u"introduction"
-        self.examples_dir_name = u"examples"
+        self.doc_root_dir_path = "."
+        self.pages_dir_name = "pages"
+        self.introduction_dir_name = "introduction"
+        self.examples_dir_name = "examples"
 
         self.__project_name = project_name
         self.__indent_level = 0
-        self.__stream = open(os.path.join(output_dir, "README.rst"), "w")
+        self.__stream = io.open(
+            os.path.join(output_dir, "README.rst"), "w", encoding=encoding)
+
+        self.__encoding = encoding
 
         self.write_chapter(self.__project_name)
 
@@ -65,12 +71,12 @@ class ReadmeMaker(object):
         self.__indent_level -= 1
 
     def write_line_list(self, line_list):
-        self.__stream.write(u"\n".join([
+        self.__stream.write("\n".join([
             self.__adjust_for_pypi(line)
             for line in line_list
             if re.search(":caption:", line) is None
         ]))
-        self.__stream.write(u"\n" * 2)
+        self.__stream.write("\n" * 2)
 
     def write_chapter(self, text):
         self.write_line_list([
@@ -79,7 +85,7 @@ class ReadmeMaker(object):
         ])
 
     def write_file(self, file_path):
-        with open(file_path) as f:
+        with io.open(file_path, "r", encoding=self.__encoding) as f:
             self.write_line_list([line.rstrip()for line in f.readlines()])
 
     def write_introduction_file(self, filename):
@@ -90,10 +96,10 @@ class ReadmeMaker(object):
 
     def __get_chapter_char(self):
         char_table = {
-            0: u"=",
-            1: u"-",
-            2: u"~",
-            3: u"^",
+            0: "=",
+            1: "-",
+            2: "~",
+            3: "^",
         }
 
         return char_table.get(self.__indent_level, char_table[max(char_table)])
