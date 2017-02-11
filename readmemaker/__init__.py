@@ -32,12 +32,12 @@ class ReadmeMaker(object):
         return self.doc_root_dir_path.joinpath(self.pages_dir_name)
 
     @property
-    def introduction_root_dir_path(self):
-        return self.doc_page_root_dir_path.joinpath(self.introduction_dir_name)
+    def file_search_dir_path(self):
+        return self.__file_search_dir_path
 
-    @property
-    def examples_root_dir_path(self):
-        return self.doc_page_root_dir_path.joinpath(self.examples_dir_name)
+    @file_search_dir_path.setter
+    def file_search_dir_path(self, dir_path):
+        self.__file_search_dir_path = path.Path(dir_path)
 
     def __init__(self, project_name, output_dir, encoding="utf8"):
         if not os.path.isdir(output_dir):
@@ -46,7 +46,7 @@ class ReadmeMaker(object):
         self.doc_root_dir_path = "."
         self.pages_dir_name = "pages"
         self.introduction_dir_name = "introduction"
-        self.examples_dir_name = "examples"
+        self.file_search_dir_path = self.doc_root_dir_path
 
         self.__project_name = project_name
         self.__indent_level = 0
@@ -89,10 +89,13 @@ class ReadmeMaker(object):
             self.write_line_list([line.rstrip()for line in f.readlines()])
 
     def write_introduction_file(self, filename):
-        self.write_file(self.introduction_root_dir_path.joinpath(filename))
+        self.write_file(
+            self.doc_page_root_dir_path.joinpath(self.introduction_dir_name)
+                .joinpath(filename)
+        )
 
-    def write_example_file(self, filename):
-        self.write_file(self.examples_root_dir_path.joinpath(filename))
+    def write_from_relative_file(self, filename):
+        self.write_file(self.file_search_dir_path.joinpath(filename))
 
     def __get_chapter_char(self):
         char_table = {
