@@ -1,13 +1,13 @@
 readmemaker
 =============
-Python utility library to support make a README from document files.
+A Python utility library to help make a README file from document files.
 
 .. image:: https://badge.fury.io/py/readmemaker.svg
     :target: https://badge.fury.io/py/readmemaker
 
+
 Examples
 =============
-
 - https://github.com/thombashi/pathvalidate/blob/master/docs/make_readme.py
     - Output: https://github.com/thombashi/pathvalidate/blob/master/README.rst
 
@@ -28,5 +28,4 @@ Installation
 
 Dependencies
 ============
-
 - `path.py <https://github.com/jaraco/path.py>`__
