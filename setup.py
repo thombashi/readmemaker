@@ -29,9 +29,9 @@ setuptools.setup(
 
     author="Tsuyoshi Hombashi",
     author_email="tsuyoshi.hombashi@gmail.com",
-    description="""
-    A Python utility library to help make a README file from document files.
-    """,
+    description=(
+        "A Python utility library to help make a README file from "
+        "document files."),
     include_package_data=True,
     license="MIT License",
     long_description=long_description,
