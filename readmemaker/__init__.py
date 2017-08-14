@@ -76,23 +76,24 @@ class ReadmeMaker(object):
             for line in line_list
             if re.search(":caption:", line) is None
         ]))
-        self.__stream.write("\n" * 2)
+        self.__stream.write("\n")
 
     def write_chapter(self, text):
         self.write_line_list([
+            "",
             text,
-            self.__get_chapter_char() * len(text),
+            self.__get_chapter_char() * (len(text) + 2),
         ])
 
     def write_file(self, file_path):
         with io.open(file_path, "r", encoding=self.__encoding) as f:
-            self.write_line_list([line.rstrip()for line in f.readlines()])
+            self.write_line_list(
+                [line.rstrip() for line in f.readlines()] + [""])
 
     def write_introduction_file(self, filename):
         self.write_file(
             self.doc_page_root_dir_path.joinpath(self.introduction_dir_name)
-                .joinpath(filename)
-        )
+                .joinpath(filename))
 
     def write_from_relative_file(self, filename):
         self.write_file(self.file_search_dir_path.joinpath(filename))
@@ -108,7 +109,6 @@ class ReadmeMaker(object):
         return char_table.get(self.__indent_level, char_table[max(char_table)])
 
     def __adjust_for_pypi(self, line):
-        line = line.replace(".. code-block::", ".. code::")
         line = line.replace(".. code:: none", ".. code::")
 
         return line
