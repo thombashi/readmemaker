@@ -25,19 +25,22 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 setuptools.setup(
     name="readmemaker",
     version="0.3.0",
+    url="https://github.com/thombashi/readmemaker",
+
     author="Tsuyoshi Hombashi",
     author_email="tsuyoshi.hombashi@gmail.com",
-    url="https://github.com/thombashi/readmemaker",
-    license="MIT License",
     description="""
-    Python utility library to support make a README from document files.
+    A Python utility library to help make a README file from document files.
     """,
     include_package_data=True,
-    install_requires=install_requires,
-    keywords=["README"],
+    license="MIT License",
     long_description=long_description,
+    keywords=["README"],
     packages=setuptools.find_packages(exclude=["test*"]),
+
+    install_requires=install_requires,
     tests_require=tests_require,
+
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
@@ -53,5 +56,4 @@ setuptools.setup(
         "Topic :: Documentation",
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
-    ],
-)
+    ])
