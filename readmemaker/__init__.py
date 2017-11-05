@@ -78,6 +78,12 @@ class ReadmeMaker(object):
         ]))
         self.__stream.write("\n")
 
+    def write_toc(self, header="Table of Contents"):
+        self.write_line_list([
+            ".. contents:: {:s}".format(header),
+            "   :depth: 2",
+        ])
+
     def write_chapter(self, text):
         self.write_line_list([
             "",
