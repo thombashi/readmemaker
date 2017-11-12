@@ -113,7 +113,8 @@ class ReadmeMaker(object):
 
         return char_table.get(self.__indent_level, char_table[max(char_table)])
 
-    def __adjust_for_pypi(self, line):
+    @staticmethod
+    def __adjust_for_pypi(line):
         line = line.replace(".. code:: none", ".. code::")
 
         return line
