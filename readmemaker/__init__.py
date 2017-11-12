@@ -86,7 +86,6 @@ class ReadmeMaker(object):
 
     def write_chapter(self, text):
         self.write_line_list([
-            #"",
             text,
             self.__get_chapter_char() * (len(text) + 2),
         ], line_break_count=1)
