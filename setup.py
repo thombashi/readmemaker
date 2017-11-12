@@ -24,7 +24,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setuptools.setup(
     name="readmemaker",
-    version="0.4.0",
+    version="0.5.0",
     url="https://github.com/thombashi/readmemaker",
 
     author="Tsuyoshi Hombashi",
