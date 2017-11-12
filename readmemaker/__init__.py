@@ -70,13 +70,13 @@ class ReadmeMaker(object):
     def dec_indent_level(self):
         self.__indent_level -= 1
 
-    def write_line_list(self, line_list):
+    def write_line_list(self, line_list, line_break_count=2):
         self.__stream.write("\n".join([
             self.__adjust_for_pypi(line)
             for line in line_list
             if re.search(":caption:", line) is None
         ]))
-        self.__stream.write("\n")
+        self.__stream.write("\n" * line_break_count)
 
     def write_toc(self, header="Table of Contents"):
         self.write_line_list([
@@ -86,15 +86,15 @@ class ReadmeMaker(object):
 
     def write_chapter(self, text):
         self.write_line_list([
-            "",
+            #"",
             text,
             self.__get_chapter_char() * (len(text) + 2),
-        ])
+        ], line_break_count=1)
 
     def write_file(self, file_path):
         with io.open(file_path, "r", encoding=self.__encoding) as f:
             self.write_line_list(
-                [line.rstrip() for line in f.readlines()] + [""])
+                [line.rstrip() for line in f.readlines()])
 
     def write_introduction_file(self, filename):
         self.write_file(
