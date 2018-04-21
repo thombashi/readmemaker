@@ -12,8 +12,16 @@ import os.path
 import setuptools
 
 
+MODULE_NAME = "readmemaker"
+REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
 REQUIREMENT_DIR = "requirements"
 ENCODING = "utf8"
+
+pkg_info = {}
+
+
+with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
+    exec(f.read(), pkg_info)
 
 with io.open("README.rst", encoding=ENCODING) as fp:
     long_description = fp.read()
@@ -25,17 +33,17 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_require = [line.strip() for line in f if line.strip()]
 
 setuptools.setup(
-    name="readmemaker",
-    version="0.5.0",
-    url="https://github.com/thombashi/readmemaker",
+    name=MODULE_NAME,
+    version=pkg_info["__version__"],
+    url=REPOSITORY_URL,
 
-    author="Tsuyoshi Hombashi",
-    author_email="tsuyoshi.hombashi@gmail.com",
+    author=pkg_info["__author__"],
+    author_email=pkg_info["__email__"],
     description=(
         "A Python utility library to help make a README file from "
         "document files."),
     include_package_data=True,
-    license="MIT License",
+    license=pkg_info["__license__"],
     long_description=long_description,
     keywords=["README"],
     packages=setuptools.find_packages(exclude=["test*"]),
