@@ -59,6 +59,10 @@ setuptools.setup(
 
     install_requires=install_requires,
     tests_require=tests_require,
+    extras_require={
+        "build": "wheel",
+        "release": "releasecmd>=0.0.8",
+    },
 
     classifiers=[
         "Development Status :: 3 - Alpha",
