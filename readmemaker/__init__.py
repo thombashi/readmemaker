@@ -116,5 +116,6 @@ class ReadmeMaker(object):
     @staticmethod
     def __adjust_for_pypi(line):
         line = line.replace(".. code:: none", ".. code::")
+        line = line.replace(".. code-block:: none", ".. code-block::")
 
         return line
