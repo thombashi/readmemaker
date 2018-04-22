@@ -39,7 +39,7 @@ class ReadmeMaker(object):
     def file_search_dir_path(self, dir_path):
         self.__file_search_dir_path = path.Path(dir_path)
 
-    def __init__(self, project_name, output_dir, encoding="utf8"):
+    def __init__(self, project_name, output_dir, encoding="utf8", is_make_toc=False):
         if not os.path.isdir(output_dir):
             raise IOError("directory not found: " + output_dir)
 
@@ -55,7 +55,11 @@ class ReadmeMaker(object):
 
         self.__encoding = encoding
 
-        self.write_chapter(self.__project_name)
+        if is_make_toc:
+            self.write_line_list(["**{:s}**".format(self.__project_name)])
+            self.write_toc()
+        else:
+            self.write_chapter(self.__project_name)
 
     def __del__(self):
         self.__stream.close()
