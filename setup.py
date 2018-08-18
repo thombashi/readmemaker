@@ -56,12 +56,15 @@ setuptools.setup(
     long_description=long_description,
     keywords=["README"],
     packages=setuptools.find_packages(exclude=["test*"]),
+    project_urls={
+        "Tracker": "{:s}/issues".format(REPOSITORY_URL),
+    },
 
     install_requires=install_requires,
     tests_require=tests_require,
     extras_require={
         "build": "wheel",
-        "release": "releasecmd>=0.0.10",
+        "release": "releasecmd>=0.0.12",
     },
 
     classifiers=[
