@@ -6,7 +6,7 @@ A Python utility library to help make a README file from document files.
     :target: https://badge.fury.io/py/readmemaker
 
 .. image:: https://img.shields.io/pypi/pyversions/readmemaker.svg
-   :target: https://pypi.python.org/pypi/readmemaker
+   :target: https://pypi.org/project/readmemaker
 
 Examples
 =============
