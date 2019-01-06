@@ -4,9 +4,11 @@ A Python utility library to help make a README file from document files.
 
 .. image:: https://badge.fury.io/py/readmemaker.svg
     :target: https://badge.fury.io/py/readmemaker
+    :alt: PyPI package version
 
 .. image:: https://img.shields.io/pypi/pyversions/readmemaker.svg
-   :target: https://pypi.org/project/readmemaker
+    :target: https://pypi.org/project/readmemaker
+    :alt: Supported Python versions
 
 Examples
 =============
