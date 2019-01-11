@@ -94,7 +94,7 @@ class ReadmeMaker(object):
 
     def write_line_list(self, line_list, line_break_count=2):
         # deprecated
-        self.write_lines(self, line_list, line_break_count)
+        self.write_lines(line_list, line_break_count)
 
     def write_toc(self, header=None):
         if header is None:
