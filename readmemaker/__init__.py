@@ -103,9 +103,7 @@ class ReadmeMaker(object):
         self.write_lines([".. contents:: {:s}".format(header), "   :depth: 2"])
 
     def write_chapter(self, text):
-        self.write_lines(
-            [text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1
-        )
+        self.write_lines([text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1)
 
     def write_file(self, file_path):
         with io.open(file_path, "r", encoding=self.__encoding) as f:
