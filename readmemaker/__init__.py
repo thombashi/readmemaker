@@ -100,7 +100,9 @@ class ReadmeMaker(object):
         if header is None:
             header = "**{:s}**".format(self.__project_name)
 
-        self.write_lines([".. contents:: {:s}".format(header), "   :depth: 2"])
+        self.write_lines(
+            [".. contents:: {:s}".format(header), "   :backlinks: top", "   :depth: 2"]
+        )
 
     def write_chapter(self, text):
         self.write_lines([text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1)
