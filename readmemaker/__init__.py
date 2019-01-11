@@ -39,7 +39,9 @@ class ReadmeMaker(object):
     def file_search_dir_path(self, dir_path):
         self.__file_search_dir_path = path.Path(dir_path)
 
-    def __init__(self, project_name, output_dir, encoding="utf8", is_make_toc=False):
+    def __init__(
+        self, project_name, output_dir, encoding="utf8", is_make_toc=False, project_url=None
+    ):
         if not os.path.isdir(output_dir):
             raise IOError("directory not found: " + output_dir)
 
@@ -49,10 +51,16 @@ class ReadmeMaker(object):
         self.file_search_dir_path = self.doc_root_dir_path
 
         self.__project_name = project_name
+        self.__project_url = project_url
         self.__indent_level = 0
         self.__stream = io.open(os.path.join(output_dir, "README.rst"), "w", encoding=encoding)
 
         self.__encoding = encoding
+
+        if self.__project_url:
+            self.__project_link = "`{:s} <{:s}>`__ ".format(self.__project_name, self.__project_url)
+        else:
+            self.__project_link = "{:s} ".format(self.__project_name)
 
         if is_make_toc:
             self.write_toc()
@@ -97,7 +105,12 @@ class ReadmeMaker(object):
 
     def write_file(self, file_path):
         with io.open(file_path, "r", encoding=self.__encoding) as f:
-            self.write_line_list([line.rstrip() for line in f.readlines()])
+            self.write_line_list(
+                [
+                    line.rstrip().replace("{:s} ".format(self.__project_name), self.__project_link)
+                    for line in f.readlines()
+                ]
+            )
 
     def write_introduction_file(self, filename):
         self.write_file(
