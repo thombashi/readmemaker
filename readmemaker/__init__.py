@@ -55,7 +55,6 @@ class ReadmeMaker(object):
         self.__encoding = encoding
 
         if is_make_toc:
-            self.write_line_list(["**{:s}**".format(self.__project_name)])
             self.write_toc()
         else:
             self.write_chapter(self.__project_name)
@@ -85,7 +84,10 @@ class ReadmeMaker(object):
         )
         self.__stream.write("\n" * line_break_count)
 
-    def write_toc(self, header="Table of Contents"):
+    def write_toc(self, header=None):
+        if header is None:
+            header = "**{:s}**".format(self.__project_name)
+
         self.write_line_list([".. contents:: {:s}".format(header), "   :depth: 2"])
 
     def write_chapter(self, text):
