@@ -58,9 +58,9 @@ class ReadmeMaker(object):
         self.__encoding = encoding
 
         if self.__project_url:
-            self.__project_link = "`{:s} <{:s}>`__ ".format(self.__project_name, self.__project_url)
+            self.__project_link = "`{:s} <{:s}>`__".format(self.__project_name, self.__project_url)
         else:
-            self.__project_link = "{:s} ".format(self.__project_name)
+            self.__project_link = "{:s}".format(self.__project_name)
 
         if is_make_toc:
             self.write_toc()
@@ -109,7 +109,9 @@ class ReadmeMaker(object):
         with io.open(file_path, "r", encoding=self.__encoding) as f:
             self.write_lines(
                 [
-                    line.rstrip().replace("{:s} ".format(self.__project_name), self.__project_link)
+                    line.rstrip().replace(
+                        "{:s} is".format(self.__project_name), "{:s} is".format(self.__project_link)
+                    )
                     for line in f.readlines()
                 ]
             )
