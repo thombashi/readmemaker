@@ -80,7 +80,7 @@ class ReadmeMaker(object):
     def dec_indent_level(self):
         self.__indent_level -= 1
 
-    def write_line_list(self, line_list, line_break_count=2):
+    def write_lines(self, line_list, line_break_count=2):
         self.__stream.write(
             "\n".join(
                 [
@@ -92,20 +92,24 @@ class ReadmeMaker(object):
         )
         self.__stream.write("\n" * line_break_count)
 
+    def write_line_list(self, line_list, line_break_count=2):
+        # deprecated
+        self.write_lines(self, line_list, line_break_count)
+
     def write_toc(self, header=None):
         if header is None:
             header = "**{:s}**".format(self.__project_name)
 
-        self.write_line_list([".. contents:: {:s}".format(header), "   :depth: 2"])
+        self.write_lines([".. contents:: {:s}".format(header), "   :depth: 2"])
 
     def write_chapter(self, text):
-        self.write_line_list(
+        self.write_lines(
             [text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1
         )
 
     def write_file(self, file_path):
         with io.open(file_path, "r", encoding=self.__encoding) as f:
-            self.write_line_list(
+            self.write_lines(
                 [
                     line.rstrip().replace("{:s} ".format(self.__project_name), self.__project_link)
                     for line in f.readlines()
