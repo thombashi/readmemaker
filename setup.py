@@ -57,6 +57,7 @@ setuptools.setup(
     keywords=["README"],
     packages=setuptools.find_packages(exclude=["test*"]),
     project_urls={
+        "Source": REPOSITORY_URL,
         "Tracker": "{:s}/issues".format(REPOSITORY_URL),
     },
 
