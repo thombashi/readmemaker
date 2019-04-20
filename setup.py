@@ -81,7 +81,9 @@ setuptools.setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Topic :: Documentation",
+        "Topic :: Software Development :: Documentation",
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Text Processing",
     ],
     cmdclass=get_release_command_class())
