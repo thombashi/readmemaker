@@ -1,1 +1,2 @@
-path.py
+path.py<12; python_version <= "3.4"
+path.py>=12.0.1,<13; python_version > "3.4"
