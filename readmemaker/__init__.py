@@ -64,7 +64,8 @@ class ReadmeMaker:
             self.write_chapter(self.__project_name)
 
     def __del__(self):
-        self.__stream.close()
+        if self.__stream:
+            self.__stream.close()
         self.__stream = None
 
     def set_indent_level(self, indent_level):
@@ -77,6 +78,10 @@ class ReadmeMaker:
         self.__indent_level -= 1
 
     def write_lines(self, line_list, line_break_count=2):
+        if not self.__stream:
+            print("ERROR: attempt to write to closed stream", file=sys.stderr)
+            return
+
         self.__stream.write(
             "\n".join(
                 [
