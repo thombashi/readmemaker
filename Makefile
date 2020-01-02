@@ -7,6 +7,12 @@ build:
 	@python setup.py clean --all
 	ls -lh dist/*
 
+.PHONY: check
+check:
+	python setup.py check
+	pylama
+	mypy readmemaker/ --show-error-context --show-error-codes --ignore-missing-imports --python-version 3.5
+
 .PHONY: clean
 clean:
 	@rm -rf  \
