@@ -61,8 +61,7 @@ setuptools.setup(
     install_requires=install_requires,
     tests_require=tests_require,
     extras_require={
-        "build": ["twine", "wheel"],
-        "release": ["releasecmd>=0.0.18,<0.1.0"],
+        "dev": ["releasecmd>=0.1.0,<1", "twine", "wheel"],
     },
 
     classifiers=[
