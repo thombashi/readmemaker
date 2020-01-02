@@ -34,4 +34,4 @@ Dependencies
 ============
 Python 3.5+
 
-- `path.py <https://github.com/jaraco/path.py>`__
+- `path <https://github.com/jaraco/path>`__
