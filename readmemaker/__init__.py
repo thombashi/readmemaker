@@ -1,10 +1,6 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import unicode_literals
 
 import io
 import os
@@ -13,7 +9,7 @@ import re
 import path
 
 
-class ReadmeMaker(object):
+class ReadmeMaker:
     """
     Make a README file with reStructuredText that
     acceptable format both GitHub and PyPI.
