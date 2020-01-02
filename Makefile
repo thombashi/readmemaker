@@ -16,6 +16,7 @@ check:
 .PHONY: clean
 clean:
 	@rm -rf  \
+		build/ \
 		dist/ \
 		pip-wheel-metadata/ \
 		.eggs/ \
