@@ -50,6 +50,7 @@ setuptools.setup(
     include_package_data=True,
     license=pkg_info["__license__"],
     long_description=long_description,
+    long_description_content_type="text/x-rst",
     keywords=["README"],
     packages=setuptools.find_packages(exclude=["test*"]),
     project_urls={
