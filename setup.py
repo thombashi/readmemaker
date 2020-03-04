@@ -61,10 +61,6 @@ setuptools.setup(
     python_requires=">=3.5",
     install_requires=install_requires,
     tests_require=tests_require,
-    extras_require={
-        "dev": ["releasecmd>=0.1.0,<1", "twine", "wheel"],
-    },
-
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
