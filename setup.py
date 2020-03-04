@@ -4,6 +4,7 @@
 
 import io
 import os.path
+from typing import Dict
 
 import setuptools
 
@@ -13,7 +14,7 @@ REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
 REQUIREMENT_DIR = "requirements"
 ENCODING = "utf8"
 
-pkg_info = {}
+pkg_info = {}  # type: Dict[str, str]
 
 
 def get_release_command_class():
@@ -41,23 +42,16 @@ setuptools.setup(
     name=MODULE_NAME,
     version=pkg_info["__version__"],
     url=REPOSITORY_URL,
-
     author=pkg_info["__author__"],
     author_email=pkg_info["__email__"],
-    description=(
-        "A Python utility library to help make a README file from "
-        "document files."),
+    description=("A Python utility library to help make a README file from " "document files."),
     include_package_data=True,
     license=pkg_info["__license__"],
     long_description=long_description,
     long_description_content_type="text/x-rst",
     keywords=["README"],
     packages=setuptools.find_packages(exclude=["test*"]),
-    project_urls={
-        "Source": REPOSITORY_URL,
-        "Tracker": "{:s}/issues".format(REPOSITORY_URL),
-    },
-
+    project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL),},
     python_requires=">=3.5",
     install_requires=install_requires,
     tests_require=tests_require,
@@ -77,4 +71,5 @@ setuptools.setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Text Processing",
     ],
-    cmdclass=get_release_command_class())
+    cmdclass=get_release_command_class(),
+)
