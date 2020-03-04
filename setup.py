@@ -4,7 +4,7 @@
 
 import io
 import os.path
-from typing import Dict
+from typing import Dict  # noqa
 
 import setuptools
 
