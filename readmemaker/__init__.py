@@ -6,9 +6,16 @@ import io
 import os
 import re
 import sys
+from enum import Enum, unique
 from typing import IO, List, Optional, Sequence, Union
 
 import path
+
+
+@unique
+class Format(Enum):
+    MARKDOWN = "md"
+    RST = "rst"
 
 
 class ReadmeMaker:
@@ -41,6 +48,7 @@ class ReadmeMaker:
         self,
         project_name: str,
         output_dir: str,
+        readme_format: Format = Format.RST,
         encoding: str = "utf8",
         is_make_toc: bool = False,
         project_url: Optional[str] = None,
@@ -54,6 +62,7 @@ class ReadmeMaker:
         self.file_search_dir_path = self.doc_root_dir_path
 
         self.__project_name = project_name
+        self.__readme_format = readme_format
         self.__project_url = project_url
         self.__indent_level = 0
         self.__stream = io.open(
