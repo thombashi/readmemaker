@@ -86,7 +86,7 @@ class ReadmeMaker:
     def dec_indent_level(self) -> None:
         self.__indent_level -= 1
 
-    def write_lines(self, line_list: List[str], line_break_count: int = 2) -> None:
+    def write_lines(self, lines: List[str], line_break_count: int = 2) -> None:
         if not self.__stream:
             print("ERROR: attempt to write to closed stream", file=sys.stderr)
             return
@@ -95,7 +95,7 @@ class ReadmeMaker:
             "\n".join(
                 [
                     self.__adjust_for_pypi(line)
-                    for line in line_list
+                    for line in lines
                     if re.search(":caption:", line) is None
                 ]
             )
