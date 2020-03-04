@@ -6,7 +6,7 @@ import io
 import os
 import re
 import sys
-from typing import IO, List, Optional, Union
+from typing import IO, List, Optional, Sequence, Union
 
 import path
 
@@ -43,7 +43,7 @@ class ReadmeMaker:
         output_dir: str,
         encoding: str = "utf8",
         is_make_toc: bool = False,
-        project_url: str = None,
+        project_url: Optional[str] = None,
     ) -> None:
         if not os.path.isdir(output_dir):
             raise IOError("directory not found: " + output_dir)
@@ -86,7 +86,7 @@ class ReadmeMaker:
     def dec_indent_level(self) -> None:
         self.__indent_level -= 1
 
-    def write_lines(self, lines: List[str], line_break_count: int = 2) -> None:
+    def write_lines(self, lines: Sequence[str], line_break_count: int = 2) -> None:
         if not self.__stream:
             print("ERROR: attempt to write to closed stream", file=sys.stderr)
             return
@@ -102,7 +102,7 @@ class ReadmeMaker:
         )
         self.__stream.write("\n" * line_break_count)
 
-    def write_toc(self, header: str = None) -> None:
+    def write_toc(self, header: Optional[str] = None) -> None:
         if header is None:
             header = "**{:s}**".format(self.__project_name)
 
