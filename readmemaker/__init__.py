@@ -2,7 +2,6 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
-import io
 import os
 import re
 import sys
@@ -54,7 +53,7 @@ class ReadmeMaker:
         project_url: Optional[str] = None,
     ) -> None:
         if not os.path.isdir(output_dir):
-            raise IOError("directory not found: " + output_dir)
+            raise OSError("directory not found: " + output_dir)
 
         self.doc_root_dir_path = "."
         self.pages_dir_name = "pages"
@@ -65,7 +64,7 @@ class ReadmeMaker:
         self.__readme_format = readme_format
         self.__project_url = project_url
         self.__indent_level = 0
-        self.__stream = io.open(
+        self.__stream = open(
             os.path.join(output_dir, "README.rst"), "w", encoding=encoding
         )  # type: Optional[IO]
 
@@ -123,7 +122,7 @@ class ReadmeMaker:
         self.write_lines([text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1)
 
     def write_file(self, file_path: str) -> None:
-        with io.open(file_path, "r", encoding=self.__encoding) as f:
+        with open(file_path, "r", encoding=self.__encoding) as f:
             self.write_lines(
                 [
                     line.rstrip().replace(
