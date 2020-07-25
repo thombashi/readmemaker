@@ -1,4 +1,3 @@
-
 .PHONY: build
 build:
 	@make clean
@@ -8,6 +7,7 @@ build:
 .PHONY: check
 check:
 	@tox -e lint
+	pip check
 
 .PHONY: clean
 clean:
@@ -19,5 +19,5 @@ fmt:
 
 .PHONY: release
 release:
-	@tox -e release
+	@python setup.py release --sign
 	@make clean
