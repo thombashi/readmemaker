@@ -10,7 +10,6 @@ build:
 .PHONY: check
 check:
 	@tox -e lint
-	pip check
 
 .PHONY: clean
 clean:
