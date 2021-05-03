@@ -23,3 +23,8 @@ fmt:
 release:
 	@$(PYTHON) setup.py release --sign
 	@make clean
+
+.PHONY: setup
+setup:
+	@$(PYTHON) -m pip install --upgrade -q --disable-pip-version-check -e . releasecmd tox
+	@$(PYTHON) -m pip check
