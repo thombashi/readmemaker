@@ -32,6 +32,6 @@ Installation
 
 Dependencies
 ============
-Python 3.5+
+Python 3.6+
 
 - `path <https://github.com/jaraco/path>`__

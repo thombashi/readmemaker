@@ -71,9 +71,9 @@ class ReadmeMaker:
         self.__encoding = encoding
 
         if self.__project_url:
-            self.__project_link = "`{:s} <{:s}>`__".format(self.__project_name, self.__project_url)
+            self.__project_link = f"`{self.__project_name:s} <{self.__project_url:s}>`__"
         else:
-            self.__project_link = "{:s}".format(self.__project_name)
+            self.__project_link = f"{self.__project_name:s}"
 
         if is_make_toc:
             self.write_toc()
@@ -112,21 +112,25 @@ class ReadmeMaker:
 
     def write_toc(self, header: Optional[str] = None) -> None:
         if header is None:
-            header = "**{:s}**".format(self.__project_name)
+            header = f"**{self.__project_name:s}**"
 
         self.write_lines(
-            [".. contents:: {:s}".format(header), "   :backlinks: top", "   :depth: 2"]
+            [
+                f".. contents:: {header:s}",
+                "   :backlinks: top",
+                "   :depth: 2",
+            ]
         )
 
     def write_chapter(self, text: str) -> None:
         self.write_lines([text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1)
 
     def write_file(self, file_path: str) -> None:
-        with open(file_path, "r", encoding=self.__encoding) as f:
+        with open(file_path, encoding=self.__encoding) as f:
             self.write_lines(
                 [
                     line.rstrip().replace(
-                        "{:s} is".format(self.__project_name), "{:s} is".format(self.__project_link)
+                        f"{self.__project_name:s} is", f"{self.__project_link:s} is"
                     )
                     for line in f.readlines()
                 ]
