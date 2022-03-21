@@ -2,11 +2,12 @@
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
+import contextlib
 import os
 import re
 import sys
 from enum import Enum, unique
-from typing import IO, List, Optional, Sequence, Union
+from typing import IO, Generator, List, Optional, Sequence, Union
 
 import path
 
@@ -93,6 +94,15 @@ class ReadmeMaker:
 
     def dec_indent_level(self) -> None:
         self.__indent_level -= 1
+
+    @contextlib.contextmanager
+    def indent(self) -> Generator:
+        self.inc_indent_level()
+
+        try:
+            yield
+        finally:
+            self.dec_indent_level()
 
     def write_lines(self, lines: Sequence[str], line_break_count: int = 2) -> None:
         if not self.__stream:
