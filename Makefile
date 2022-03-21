@@ -3,29 +3,29 @@ PYTHON := python3
 
 .PHONY: build
 build: clean
-	@tox -e build
+	@$(PYTHON) -m tox -e build
 	ls -lh dist/*
 
 .PHONY: check
 check:
-	@tox -e lint
+	@$(PYTHON) -m tox -e lint
 
 .PHONY: clean
 clean:
-	@tox -e clean
+	@$(PYTHON) -m tox -e clean
 
 .PHONY: fmt
 fmt:
-	@tox -e fmt
+	@$(PYTHON) -m tox -e fmt
 
 .PHONY: release
 release:
 	@$(PYTHON) setup.py release --sign
-	@make clean
+	@$(MAKE) clean
 
 .PHONY: setup
 setup:
-	@$(PYTHON) -m pip install  --disable-pip-version-check --upgrade releasecmd tox
+	@$(PYTHON) -m pip install --disable-pip-version-check --upgrade releasecmd tox
 
 .PHONY: setup-dev
 setup-dev: setup
