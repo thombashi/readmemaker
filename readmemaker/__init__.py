@@ -66,9 +66,9 @@ class ReadmeMaker:
         self.__readme_format = readme_format
         self.__project_url = project_url
         self.__indent_level = 0
-        self.__stream = open(
+        self.__stream: Optional[IO] = open(
             os.path.join(output_dir, "README.rst"), "w", encoding=encoding
-        )  # type: Optional[IO]
+        )
 
         self.__encoding = encoding
 
@@ -141,20 +141,20 @@ class ReadmeMaker:
     def write_file(self, file_path: str) -> None:
         lines: List[str] = []
         re_exclude = re.compile(r"not-exclude^")
-        
+
         if self.__for_pypi:
             re_exclude = re.compile(r"\s*:scale:\s*\d+")
 
         with open(file_path, encoding=self.__encoding) as f:
             for line in f.readlines():
-                l = line.rstrip().replace(
+                line = line.rstrip().replace(
                     f"{self.__project_name:s} is", f"{self.__project_link:s} is"
                 )
-                
-                if re_exclude.search(l):
+
+                if re_exclude.search(line):
                     continue
-                
-                lines.append(l)
+
+                lines.append(line)
 
         self.write_lines(lines)
 
