@@ -6,8 +6,9 @@ import contextlib
 import os
 import re
 import sys
+from collections.abc import Generator, Sequence
 from enum import Enum, unique
-from typing import IO, Generator, List, Optional, Sequence, Union
+from typing import IO, Optional, Union
 
 import path
 
@@ -139,7 +140,7 @@ class ReadmeMaker:
         self.write_lines([text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1)
 
     def write_file(self, file_path: str) -> None:
-        lines: List[str] = []
+        lines: list[str] = []
         re_exclude = re.compile(r"not-exclude^")
 
         if self.__for_pypi:
