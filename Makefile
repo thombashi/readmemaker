@@ -23,11 +23,11 @@ release:
 	@$(PYTHON) setup.py release --sign
 	@$(MAKE) clean
 
-.PHONY: setup
-setup:
+.PHONY: setup-ci
+setup-ci:
 	@$(PYTHON) -m pip install --disable-pip-version-check --upgrade releasecmd tox
 
 .PHONY: setup-dev
-setup-dev: setup
+setup-dev: setup-ci
 	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test]
 	@$(PYTHON) -m pip check
