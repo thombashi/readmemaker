@@ -52,6 +52,7 @@ class ReadmeMaker:
         encoding: str = "utf8",
         is_make_toc: bool = False,
         project_url: Optional[str] = None,
+        for_pypi: bool = False,
     ) -> None:
         if not os.path.isdir(output_dir):
             raise OSError("directory not found: " + output_dir)
@@ -80,6 +81,8 @@ class ReadmeMaker:
             self.write_toc()
         else:
             self.write_chapter(self.__project_name)
+
+        self.__for_pypi = for_pypi
 
     def __del__(self) -> None:
         if self.__stream:
@@ -136,15 +139,24 @@ class ReadmeMaker:
         self.write_lines([text, self.__get_chapter_char() * (len(text) + 2)], line_break_count=1)
 
     def write_file(self, file_path: str) -> None:
+        lines: List[str] = []
+        re_exclude = re.compile(r"not-exclude^")
+        
+        if self.__for_pypi:
+            re_exclude = re.compile(r"\s*:scale:\s*\d+")
+
         with open(file_path, encoding=self.__encoding) as f:
-            self.write_lines(
-                [
-                    line.rstrip().replace(
-                        f"{self.__project_name:s} is", f"{self.__project_link:s} is"
-                    )
-                    for line in f.readlines()
-                ]
-            )
+            for line in f.readlines():
+                l = line.rstrip().replace(
+                    f"{self.__project_name:s} is", f"{self.__project_link:s} is"
+                )
+                
+                if re_exclude.search(l):
+                    continue
+                
+                lines.append(l)
+
+        self.write_lines(lines)
 
     def write_introduction_file(self, filename: str) -> None:
         self.write_file(
