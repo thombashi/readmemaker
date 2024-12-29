@@ -33,9 +33,6 @@ with open("README.rst", encoding=ENCODING) as fp:
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
     install_requires = [line.strip() for line in f if line.strip()]
 
-with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
-    tests_require = [line.strip() for line in f if line.strip()]
-
 setuptools.setup(
     name=MODULE_NAME,
     url=REPOSITORY_URL,
@@ -56,7 +53,6 @@ setuptools.setup(
     },
     python_requires=">=3.9",
     install_requires=install_requires,
-    tests_require=tests_require,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
