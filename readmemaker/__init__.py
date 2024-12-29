@@ -144,6 +144,7 @@ class ReadmeMaker:
         re_exclude = re.compile(r"not-exclude^")
 
         if self.__for_pypi:
+            # ref: https://github.com/pypa/readme_renderer/issues/304
             re_exclude = re.compile(r"\s*:scale:\s*\d+")
 
         with open(file_path, encoding=self.__encoding) as f:
