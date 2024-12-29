@@ -71,5 +71,6 @@ setuptools.setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Text Processing",
     ],
+    zip_safe=False,
     cmdclass=get_release_command_class(),
 )
