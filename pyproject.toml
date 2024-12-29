@@ -43,5 +43,4 @@ exclude = [
     "_sandbox/*",
     "build/",
     "docs/conf.py",
-    "examples/pathvalidate_examples.py"
 ]
